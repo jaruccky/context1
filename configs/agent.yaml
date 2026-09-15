@@ -1,0 +1,15 @@
+max_steps: 8
+max_tool_calls: 6
+token_budget: 3000
+default_top_k: 5
+
+# "mock" needs no GPU/network -- deterministic MockAgentPolicy, used by default and
+# in tests. "llm" talks to an OpenAI-compatible endpoint (e.g. vLLM serving Qwen3-8B).
+policy: mock
+
+llm:
+  base_url: "http://localhost:8000/v1"
+  api_key: "EMPTY"
+  model: "Qwen/Qwen3-8B"
+  temperature: 0.0
+  max_tokens: 512

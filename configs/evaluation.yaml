@@ -1,0 +1,10 @@
+corpus_path: data/corpus/synthetic.jsonl
+benchmark_path: data/benchmark/synthetic.jsonl
+baselines: [direct, one_shot_rag, long_context_rag, agentic]
+one_shot_top_k: 5
+long_context_top_k: 20
+output_dir: artifacts/runs
+
+# "mock" needs no GPU/network -- extractive stub. "llm" uses the same OpenAI-compatible
+# endpoint config as configs/agent.yaml's `llm` section.
+answer_generator: mock

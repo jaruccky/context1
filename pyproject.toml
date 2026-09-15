@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "context-agent"
+version = "0.1.0"
+description = "Context-1: an agentic retrieval and context-management agent that returns compact evidence packs for a downstream answer model."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.7",
+  "PyYAML>=6.0",
+  "typer>=0.12",
+  "numpy>=1.26",
+  "rank-bm25>=0.2.2",
+  "sentence-transformers>=3.0",
+  "qdrant-client>=1.9",
+  "datasets>=2.20",
+  "openai>=1.30",
+  "rich>=13.7",
+]
+
+[project.optional-dependencies]
+train = [
+  "torch>=2.3",
+  "transformers>=4.45",
+  "peft>=0.12",
+  "trl>=0.9",
+  "accelerate>=0.33",
+]
+dev = ["pytest>=8.2"]
+
+[project.scripts]
+context-agent = "context_agent.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

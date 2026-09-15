@@ -1,0 +1,4 @@
+chunk_size: 400
+chunk_overlap: 50
+corpus_path: data/corpus/synthetic.jsonl
+benchmark_path: data/benchmark/synthetic.jsonl

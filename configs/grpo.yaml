@@ -1,0 +1,36 @@
+# GRPO config for context_agent.training.grpo. Requires a CUDA GPU to actually run
+# (on-policy rollouts + gradient updates against a live HF model) -- not exercised by
+# this repo's test suite.
+base_model: "Qwen/Qwen3-8B"
+sft_adapter: "artifacts/sft/qwen3-8b-context1"  # set to null to start LoRA from scratch
+corpus_path: "data/corpus/corpus.jsonl"
+benchmark_path: "data/benchmark/tasks.jsonl"
+retrieval_config: "configs/retrieval.yaml"
+output_dir: "artifacts/grpo/qwen3-8b-context1"
+
+group_size: 4
+tasks_per_iteration: 4
+num_iterations: 200
+save_every: 20
+
+max_steps: 8
+max_tool_calls: 6
+token_budget: 3000
+
+temperature: 1.0
+top_p: 0.95
+max_new_tokens: 256
+
+learning_rate: 0.00001
+kl_coef: 0.04
+max_grad_norm: 1.0
+
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+
+reward_alpha: 0.02
+reward_beta: 0.0005
+reward_gamma: 0.1
+
+seed: 0

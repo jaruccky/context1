@@ -1,0 +1,22 @@
+# Every stage independently toggleable, to support the required ablations:
+# BM25-only (use_dense: false), dense-only (use_bm25: false), hybrid (both true),
+# with/without reranker (use_reranker).
+use_bm25: true
+use_dense: true
+use_reranker: false
+
+bm25_top_k: 20
+dense_top_k: 20
+rrf_k: 60
+rerank_candidates: 20
+final_top_k: 5
+
+# "hashing" is a dependency-free, deterministic embedder used by default so the repo
+# runs fully offline/CPU. Set to "BAAI/bge-m3" (or any sentence-transformers model id)
+# for the real, production-like embedder -- downloads weights, slow on CPU.
+dense_model: hashing
+# Set to "BAAI/bge-reranker-v2-m3" for the real cross-encoder reranker.
+reranker_model: cross-encoder/ms-marco-MiniLM-L-6-v2
+
+# null -> ephemeral in-memory Qdrant collection; set a path to persist it locally.
+qdrant_path: null
